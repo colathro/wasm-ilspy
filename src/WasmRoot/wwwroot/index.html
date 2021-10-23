@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>spil</title>
+    <base href="/" />
+  </head>
+
+  <body>
+    <script src="_framework/blazor.webassembly.js"></script>
+    <script src="main.js"></script>
+    <input type="file" id="file-selector" />
+    <script>
+      function _arrayBufferToUint8Array(buffer) {
+        return new Uint8Array(buffer);
+      }
+
+      const fileSelector = document.getElementById("file-selector");
+      fileSelector.addEventListener("change", (event) => {
+        const fileList = event.target.files;
+        console.log(fileList);
+        const name = fileList[0].name;
+        const reader = new FileReader();
+        reader.addEventListener("loadend", (ev) => {
+          console.log(ev);
+          DotNet.invokeMethodAsync(
+            "spil",
+            "FromJS",
+            name,
+            _arrayBufferToUint8Array(ev.target.result)
+          ).then((data) => {
+            console.log(data);
+          });
+        });
+        reader.readAsArrayBuffer(fileList[0]);
+      });
+    </script>
+  </body>
+</html>
