@@ -16,5 +16,10 @@
     <ProjectReference Include="..\ICSharpCode.Decompiler\ICSharpCode.Decompiler.csproj" />
   </ItemGroup>
 
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="rm -r -f $(MSBuildProjectDirectory)\..\spil\public\_framework" />
+    <Exec Command="cp -R $(MSBuildProjectDirectory)\bin\Debug\net6.0\wwwroot\_framework $(MSBuildProjectDirectory)\..\spil\public" />
+  </Target>
+
 
 </Project>

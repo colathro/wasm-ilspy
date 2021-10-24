@@ -17,3 +17,5 @@ if (interop == default)
 {
     throw new Exception("Interop Service Null. Refresh Page.");
 }
+
+Interop.JSRuntime = interop;
