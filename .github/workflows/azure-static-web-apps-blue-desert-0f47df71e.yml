@@ -23,7 +23,7 @@ jobs:
         with:
           dotnet-version: "6.0.x"
           include-prerelease: true
-      - run: dotnet build /src/Wasm/spil.csproj
+      - run: dotnet build ./src/Wasm/spil.csproj
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
