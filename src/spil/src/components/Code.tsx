@@ -5,7 +5,6 @@ import { observer } from "mobx-react-lite";
 import styled from "styled-components";
 import globalState from "../GlobalState";
 import { GetCSharpCode } from "../Interop";
-import { findByLabelText } from "@testing-library/dom";
 
 const Container = styled.div`
   display: flex;

@@ -1,4 +1,3 @@
-import { SignatureHelpTriggerCharacter } from "typescript";
 import globalState, {
   Assembly,
   Module,
@@ -83,19 +82,6 @@ export const populateAssemblyInfo = async (
         let member: Member = new Member(memberName);
         topLevelTypeDefinition.members.push(member);
       });
-
-      for (const member of topLevelTypeDefinition.members) {
-        continue;
-        let code: string = await DotNet.invokeMethodAsync(
-          "spil",
-          "GetCSharpCode",
-          assembly.name,
-          module.name,
-          topLevelTypeDefinition.name,
-          member.name
-        );
-        member.code = code;
-      }
     }
   }
   callback(assembly);
@@ -108,7 +94,7 @@ export const GetCSharpCode = async (
   member: string | undefined,
   callback: (code: string) => void
 ) => {
-  if (assembly == undefined) {
+  if (assembly === undefined) {
     return;
   }
   let code: string = await DotNet.invokeMethodAsync(

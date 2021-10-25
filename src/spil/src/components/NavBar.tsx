@@ -46,7 +46,7 @@ const NavBar = observer(() => {
               member: "",
               unselectCallback: unselectCallback,
             };
-            if (globalState.renderedMember?.unselectCallback != undefined) {
+            if (globalState.renderedMember?.unselectCallback !== undefined) {
               globalState.renderedMember?.unselectCallback.current(false);
             }
             globalState.renderedMember = renderedMember;
@@ -68,7 +68,7 @@ const NavBar = observer(() => {
                 member: member.name,
                 unselectCallback: unselectCallback,
               };
-              if (globalState.renderedMember?.unselectCallback != undefined) {
+              if (globalState.renderedMember?.unselectCallback !== undefined) {
                 globalState.renderedMember?.unselectCallback.current(false);
               }
               globalState.renderedMember = renderedMember;
@@ -92,10 +92,6 @@ const NavBar = observer(() => {
     </Container>
   );
 });
-
-const setRenderedCode = (renderedMember: RenderedMember) => {
-  globalState.renderedMember = renderedMember;
-};
 
 const AssemblyIcon = (
   <svg
