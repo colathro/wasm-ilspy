@@ -1,22 +1,22 @@
 import React from "react";
 import { observer } from "mobx-react-lite";
-import Assemblies from "./components/Assemblies";
-import FileInput from "./components/FileInput";
-import { getAssemblies } from "./Interop";
+import styled from "styled-components";
+import MainPage from "./components/MainPage";
+import TitleBar from "./components/TitleBar";
+
+const Container = styled.div`
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  flex-direction: column;
+`;
 
 const App = observer(() => {
   return (
-    <div className="App">
-      <button
-        onClick={() => {
-          getAssemblies();
-        }}
-      >
-        Get Assemblies
-      </button>
-      <FileInput />
-      <Assemblies />
-    </div>
+    <Container>
+      <TitleBar></TitleBar>
+      <MainPage></MainPage>
+    </Container>
   );
 });
 

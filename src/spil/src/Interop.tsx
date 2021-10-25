@@ -1,3 +1,4 @@
+import { SignatureHelpTriggerCharacter } from "typescript";
 import globalState, {
   Assembly,
   Module,
@@ -97,8 +98,28 @@ export const populateAssemblyInfo = async (
       }
     }
   }
-  console.log(assembly);
   callback(assembly);
+};
+
+export const GetCSharpCode = async (
+  assembly: string | undefined,
+  module: string | undefined,
+  topLevelTypeDefinition: string | undefined,
+  member: string | undefined,
+  callback: (code: string) => void
+) => {
+  if (assembly == undefined) {
+    return;
+  }
+  let code: string = await DotNet.invokeMethodAsync(
+    "spil",
+    "GetCSharpCode",
+    assembly,
+    module,
+    topLevelTypeDefinition,
+    member
+  );
+  callback(code);
 };
 
 const _arrayBufferToUint8Array = (buffer: ArrayBuffer | null | string) => {

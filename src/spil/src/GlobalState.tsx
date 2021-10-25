@@ -1,13 +1,24 @@
 import { makeAutoObservable } from "mobx";
+import { MutableRefObject } from "react";
 
 class GlobalState {
   assemblies: Assembly[];
+
+  renderedMember: RenderedMember | undefined;
 
   constructor() {
     makeAutoObservable(this);
     this.assemblies = [];
   }
 }
+
+export type RenderedMember = {
+  assembly: string;
+  module: string;
+  topLevelTypeDefinition: string;
+  member: string;
+  unselectCallback: MutableRefObject<(isSelected: boolean) => void>;
+};
 
 export class Assembly {
   // actual main file

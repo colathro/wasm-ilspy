@@ -30,7 +30,7 @@ function FileInput() {
         }}
         multiple
       />
-      <Button onClick={onButtonClick}>Open file upload window</Button>
+      <Button onClick={onButtonClick}>Add a DLL</Button>
     </div>
   );
 }
