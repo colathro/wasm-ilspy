@@ -24,6 +24,7 @@ jobs:
           dotnet-version: "6.0.x"
           include-prerelease: true
       - run: dotnet build ./src/Wasm/spil.csproj
+      - run: dotnet nuget add source --username spacedog-labs --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/icsharpcode/index.json"
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1

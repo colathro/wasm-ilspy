@@ -25,9 +25,11 @@ public static class Interop
             decompileTarget.Reader.DetectTargetFrameworkId()
         );
 
-        var decompilerTypeSystem = new DecompilerTypeSystem(decompileTarget);
-
-        await decompilerTypeSystem.InitializeAsync(decompileTarget, assemblyResolver, DecompilerTypeSystem.GetOptions(settings));
+        var decompilerTypeSystem = await DecompilerTypeSystem.CreateAsync(
+            decompileTarget,
+            assemblyResolver,
+            DecompilerTypeSystem.GetOptions(settings)
+        );
 
         var decompiler = new CSharpDecompiler(
             decompilerTypeSystem,
@@ -62,10 +64,11 @@ public static class Interop
             module.Reader.DetectTargetFrameworkId()
         );
 
-        var decompilerTypeSystem = new DecompilerTypeSystem(module);
-
-        await decompilerTypeSystem.InitializeAsync(module, assemblyResolver, DecompilerTypeSystem.GetOptions(settings));
-
+        var decompilerTypeSystem = await DecompilerTypeSystem.CreateAsync(
+            module,
+            assemblyResolver,
+            DecompilerTypeSystem.GetOptions(settings)
+        );
         var decompiler = new CSharpDecompiler(
             decompilerTypeSystem,
             settings
